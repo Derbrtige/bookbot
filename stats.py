@@ -18,9 +18,19 @@ def how_many (text):
 
     return characters
 
-def main ():
-    book = "books/frankenstein.txt"
-    text = get_book_text(book)
-#    print(f"{count_words(book)} words found in the document")
-    print(how_many(text))
-main()
+def char_list (text):
+    counts = how_many(text)
+    character = []
+    for c,n in counts.items():
+        entry = {"char": c, "num": n}
+        character.append(entry)
+
+    return character
+
+def sorted_list (text):
+    filtered = []
+    chars = char_list(text)
+    chars.sort(reverse=True, key=lambda item: item["num"])
+    filtered = [entry for entry in chars if entry["char"].isalpha()]
+    return filtered
+
